@@ -1,7 +1,8 @@
 NAME = philo
 
 CC = cc
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+PTHREAD = -pthread
 
 SRC_DIR = src/
 SRC_FILES = main.c init.c helper.c simulation.c delete.c
@@ -17,7 +18,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
+	$(CC) $(CFLAGS) $(INCLUDE) $(PTHREAD) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c $<
