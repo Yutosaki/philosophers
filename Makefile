@@ -4,7 +4,7 @@ CC = cc
 CFLAGS= -Wall -Wextra -Werror
 
 SRC_DIR = src/
-SRC_FILES = main.c
+SRC_FILES = main.c init.c helper.c simulation.c delete.c
 
 INCLUDE_DIR = ./include
 INCLUDE = -I$(INCLUDE_DIR)
