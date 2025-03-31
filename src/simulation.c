@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/03/28 12:29:55 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/03/31 21:21:40 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	is_dead(t_philo *philo)
 	return (false);
 }
 
-bool	check_if_is_ate_enough(t_simulation_data *data, t_philo *philos)
+bool	is_ate_enough(t_simulation_data *data, t_philo *philos)
 {
 	int	i;
 	int	count;
@@ -123,7 +123,7 @@ void	*monitor_routine(void *arg)
 				return (NULL);
 			i++;
 		}
-		if (check_if_is_ate_enough(data, philos))
+		if (is_ate_enough(data, philos))
 			return (NULL);
 		usleep(500); // 死亡検出を早めるために短い間隔でチェック
 	}
