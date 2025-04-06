@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 PTHREAD = -pthread
 
 SRC_DIR = src/
-SRC_FILES = main.c init.c helper.c simulation.c delete.c
+SRC_FILES = main.c init.c helper.c simulation.c delete.c simulation_helper.c
 
 INCLUDE_DIR = ./include
 INCLUDE = -I$(INCLUDE_DIR)
