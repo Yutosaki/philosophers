@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:21:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/03/28 12:29:55 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:59:30 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ void	parse_args(t_simulation_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->num_times_to_eat = (argc == 6) ? ft_atoi(argv[5]) : -1;
 	if (argc == 6)
-		data->num_times_to_eat = ft_atoi(argv[5]);
-	else // デフォルト値はどうなっている？
-		data->num_times_to_eat = 5;
+		data->must_eat_count = ft_atoi(argv[5]);
+	else // デフォルト値はどうなっている？ -1で死ぬまで食わせている
+		data->must_eat_count = -1;
 }
 
 int	init_mutexes(t_simulation_data *data)
