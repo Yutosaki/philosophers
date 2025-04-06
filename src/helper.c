@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:23:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/03/28 12:29:55 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/06 12:06:10 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	print_status(t_philo *philo, char *status)
 
 	pthread_mutex_lock(&philo->data->print_mutex);
 	pthread_mutex_lock(&philo->data->death_mutex);
-	if (!philo->data->someone_died || !strcmp(status, DIED))
+	if (!philo->data->someone_died || !ft_strcmp(status, DIED))
 	{
 		current_time = get_time() - philo->data->start_time;
 		printf("%lld %d %s\n", current_time, philo->id, status);
@@ -82,6 +82,7 @@ void	print_status(t_philo *philo, char *status)
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
+// https://qiita.com/nhadachi/items/e7a63e61c7113299c81e
 void	precise_sleep(long long ms)
 {
 	long long	start;
@@ -95,4 +96,16 @@ void	precise_sleep(long long ms)
 			break ;
 		usleep(100);
 	}
+}
+
+int ft_strcmp(const char *s1, const char *s2)
+{
+  while (*s1 && *s2)
+  {
+    if (*s1 != *s2)
+      return (0);
+    s1++;
+    s2++;
+  }
+  return (*s1 == *s2);
 }
