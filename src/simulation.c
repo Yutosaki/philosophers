@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/08 22:52:29 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:56:25 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ void *case_one_philo(t_philo *philo)
 	precise_sleep(philo->data->time_to_die);
 	pthread_mutex_lock(&philo->data->death_mutex);
 	pthread_mutex_lock(&philo->data->print_mutex);
+	philo->data->someone_died = true;
 	current_time = get_time() - philo->data->start_time;
 	printf("%lld %d %s\n", current_time, philo->id, DIED);
+	pthread_mutex_unlock(&philo->data->print_mutex);
+	pthread_mutex_unlock(&philo->data->death_mutex);
 	pthread_mutex_unlock(philo->left_fork);
 	return (NULL);
 }
