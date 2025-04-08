@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/03 12:20:11 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:52:29 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*monitor_routine(void *arg)
 		}
 		if (is_ate_enough(data, philos))
 			return (NULL);
-		usleep(500); // 死亡検出を早めるために短い間隔でチェック
+		usleep(500);
 	}
 	return (NULL);
 }
