@@ -38,11 +38,16 @@ void	*monitor_routine(void *arg)
 
 void *case_one_philo(t_philo *philo)
 {
+	long long	current_time;
+
 	pthread_mutex_lock(philo->left_fork);
 	print_status(philo, FORK_TAKEN);
 	precise_sleep(philo->data->time_to_die);
+	pthread_mutex_lock(&philo->data->death_mutex);
+	pthread_mutex_lock(&philo->data->print_mutex);
+	current_time = get_time() - philo->data->start_time;
+	printf("%lld %d %s\n", current_time, philo->id, DIED);
 	pthread_mutex_unlock(philo->left_fork);
-	print_status(philo, DIED);
 	return (NULL);
 }
 

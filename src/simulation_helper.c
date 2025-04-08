@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:19:50 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/04 15:55:01 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:40:48 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,11 @@ void    sleep_and_think(t_philo *philo)
 bool    is_dead(t_philo *philo)
 {
 	long long	current_time;
-	long long	time_since_last_meal;
 	bool		is_dead;
 
 	is_dead = false;
 	pthread_mutex_lock(&philo->data->meal_mutex);
-	current_time = get_time();
-	time_since_last_meal = current_time - philo->last_meal_time;
-	if (time_since_last_meal > philo->data->time_to_die)
+	if ((get_time() - philo->last_meal_time) > philo->data->time_to_die)
 		is_dead = true;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	if (is_dead)
@@ -70,12 +67,16 @@ bool    is_dead(t_philo *philo)
 		if (!philo->data->someone_died)
 		{
 			philo->data->someone_died = true;
+            pthread_mutex_lock(&philo->data->print_mutex);
+            current_time = get_time() - philo->data->start_time;
+            printf("%lld %d %s\n", current_time, philo->id, DIED);
+            pthread_mutex_unlock(&philo->data->print_mutex);
 			pthread_mutex_unlock(&philo->data->death_mutex);
-			print_status(philo, DIED);
 			return (true);
 		}
 		pthread_mutex_unlock(&philo->data->death_mutex);
-	}
+        return (true);
+    }
 	return (false);
 }
 

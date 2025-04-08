@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:23:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/06 12:06:10 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/08 22:30:36 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	print_status(t_philo *philo, char *status)
 
 	pthread_mutex_lock(&philo->data->print_mutex);
 	pthread_mutex_lock(&philo->data->death_mutex);
-	if (!philo->data->someone_died || !ft_strcmp(status, DIED))
+	if (!philo->data->someone_died)
 	{
 		current_time = get_time() - philo->data->start_time;
 		printf("%lld %d %s\n", current_time, philo->id, status);
