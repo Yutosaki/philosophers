@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/09 21:25:11 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:11:42 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	*philosopher_routine(void *arg)
 	{
 		min_wait = philo->data->time_to_eat / ((philo->data->num_of_philos - 1)
 				/ 2);
-		printf("min_wait: %d\n", min_wait);
 		if (philo->id % 2 == 0)
 			precise_sleep(min_wait * philo->id / 2 + philo->data->time_to_eat);
 		else
