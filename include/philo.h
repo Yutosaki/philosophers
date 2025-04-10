@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:52 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/06 12:04:16 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/10 21:13:16 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int						init_simulation_data(t_simulation_data *data, int argc,
 int						init_mutexes(t_simulation_data *data);
 int						init_philosophers(t_simulation_data *data,
 							t_philo **philos);
+int						init_fork_mutexes(t_simulation_data *data);
+int						init_other_mutexes(t_simulation_data *data);
 
 void					parse_args(t_simulation_data *data, int argc,
 							char **argv);

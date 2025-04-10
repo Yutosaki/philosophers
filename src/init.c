@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:21:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/09 21:36:08 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/10 21:27:19 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,32 @@ void	parse_args(t_simulation_data *data, int argc, char **argv)
 
 int	init_mutexes(t_simulation_data *data)
 {
+	if (init_fork_mutexes(data) != 0)
+		return (1);
+	if (init_other_mutexes(data) != 0)
+		return (1);
+	return (0);
+}
+
+int	init_other_mutexes(t_simulation_data *data)
+{
+	int	i;
+
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0
+		|| pthread_mutex_init(&data->death_mutex, NULL) != 0
+		|| pthread_mutex_init(&data->meal_mutex, NULL) != 0)
+	{
+		i = 0;
+		while (i < data->num_of_philos)
+			pthread_mutex_destroy(&data->forks[i++]);
+		free(data->forks);
+		return (1);
+	}
+	return (0);
+}
+
+int	init_fork_mutexes(t_simulation_data *data)
+{
 	int	i;
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_of_philos);
@@ -42,16 +68,6 @@ int	init_mutexes(t_simulation_data *data)
 			return (1);
 		}
 		i++;
-	}
-	if (pthread_mutex_init(&data->print_mutex, NULL) != 0
-		|| pthread_mutex_init(&data->death_mutex, NULL) != 0
-		|| pthread_mutex_init(&data->meal_mutex, NULL) != 0)
-	{
-		i = 0;
-		while (i < data->num_of_philos)
-			pthread_mutex_destroy(&data->forks[i++]);
-		free(data->forks);
-		return (1);
 	}
 	return (0);
 }
