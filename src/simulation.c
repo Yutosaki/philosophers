@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/10 20:11:42 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/10 22:33:42 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*philosopher_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->last_meal_time = get_time();
+	philo->last_meal_time = philo->data->start_time;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	if (philo->data->num_of_philos == 1)
 		return (case_one_philo(philo));
