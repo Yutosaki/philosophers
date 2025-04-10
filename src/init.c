@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:21:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/04 15:59:30 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:36:08 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parse_args(t_simulation_data *data, int argc, char **argv)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->must_eat_count = ft_atoi(argv[5]);
-	else // デフォルト値はどうなっている？ -1で死ぬまで食わせている
+	else
 		data->must_eat_count = -1;
 }
 

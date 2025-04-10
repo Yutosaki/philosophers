@@ -85,7 +85,6 @@ void	print_status(t_philo *philo, char *status)
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
-// https://qiita.com/nhadachi/items/e7a63e61c7113299c81e
 void	precise_sleep(long long ms)
 {
 	long long	start;
