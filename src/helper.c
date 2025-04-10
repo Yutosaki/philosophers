@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:23:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/09 21:36:37 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:24:34 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ int	ft_atoi(const char *str)
 	{
 		result = result * 10 + (str[i] - '0');
 		if (result * sign > INT_MAX || result * sign < INT_MIN)
+		{
 			if (sign == 1)
 				return (INT_MAX);
 			else
 				return (INT_MIN);
+		}
 		i++;
 	}
 	return (result * sign);
