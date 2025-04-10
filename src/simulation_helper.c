@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void    take_forks(t_philo *philo)
+void	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -44,14 +44,14 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork);
 }
 
-void    sleep_and_think(t_philo *philo)
+void	sleep_and_think(t_philo *philo)
 {
 	print_status(philo, SLEEPING);
 	precise_sleep(philo->data->time_to_sleep);
 	print_status(philo, THINKING);
 }
 
-bool    is_dead(t_philo *philo)
+bool	is_dead(t_philo *philo)
 {
 	long long	current_time;
 	bool		is_dead;
@@ -67,16 +67,16 @@ bool    is_dead(t_philo *philo)
 		if (!philo->data->someone_died)
 		{
 			philo->data->someone_died = true;
-            pthread_mutex_lock(&philo->data->print_mutex);
-            current_time = get_time() - philo->data->start_time;
-            printf("%lld %d %s\n", current_time, philo->id, DIED);
-            pthread_mutex_unlock(&philo->data->print_mutex);
+			pthread_mutex_lock(&philo->data->print_mutex);
+			current_time = get_time() - philo->data->start_time;
+			printf("%lld %d %s\n", current_time, philo->id, DIED);
+			pthread_mutex_unlock(&philo->data->print_mutex);
 			pthread_mutex_unlock(&philo->data->death_mutex);
 			return (true);
 		}
 		pthread_mutex_unlock(&philo->data->death_mutex);
-        return (true);
-    }
+		return (true);
+	}
 	return (false);
 }
 

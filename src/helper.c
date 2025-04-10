@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:23:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/08 22:30:36 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/09 21:36:37 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ void	precise_sleep(long long ms)
 	}
 }
 
-int ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-  while (*s1 && *s2)
-  {
-    if (*s1 != *s2)
-      return (0);
-    s1++;
-    s2++;
-  }
-  return (*s1 == *s2);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+	}
+	return (*s1 == *s2);
 }
