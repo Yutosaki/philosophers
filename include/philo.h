@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:52 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/10 21:13:16 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:44:48 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_simulation_data
 	bool				is_ate_enough;
 	bool				someone_died;
 	long long			start_time;
+	struct s_philo		*philos;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print_mutex;
 	pthread_mutex_t		death_mutex;

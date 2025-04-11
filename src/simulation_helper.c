@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:19:50 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/08 22:40:48 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/11 22:20:45 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,44 @@
 
 void	take_forks(t_philo *philo)
 {
+	bool		is_most_hungry;
+	long long	my_hunger_time;
+	long long	other_hunger_time;
+	int			i;
+	long long	current_time;
+
+	is_most_hungry = true;
+	current_time = get_time();
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	my_hunger_time = current_time - philo->last_meal_time;
+	pthread_mutex_unlock(&philo->data->meal_mutex);
+	i = 0;
+	if (philo->data->num_of_philos <= 5)
+	{
+		while (i < philo->data->num_of_philos)
+		{
+			if (philo->data->philos[i].id != philo->id)
+			{
+				pthread_mutex_lock(&philo->data->meal_mutex);
+				other_hunger_time = current_time
+					- philo->data->philos[i].last_meal_time;
+				pthread_mutex_unlock(&philo->data->meal_mutex);
+				if (other_hunger_time > my_hunger_time)
+				{
+					is_most_hungry = false;
+					break ;
+				}
+			}
+			i++;
+		}
+		if (!is_most_hungry)
+		{
+			precise_sleep(philo->data->time_to_eat
+				/ philo->data->num_of_philos);
+			take_forks(philo);
+			return ;
+		}
+	}
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
