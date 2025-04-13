@@ -14,7 +14,8 @@
 
 bool	is_valid_number(const char *str)
 {
-	int	i;
+	int			i;
+	long long	max_check;
 
 	i = 0;
 	if (str[i] == '-')
@@ -29,13 +30,16 @@ bool	is_valid_number(const char *str)
 			return (false);
 		i++;
 	}
+	max_check = ft_atoll(str);
+	if (max_check > INT_MAX || max_check < INT_MIN)
+		return (false);
 	return (true);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoll(const char *str)
 {
 	int			i;
-	int			sign;
+	long long	sign;
 	long long	result;
 
 	i = 0;
@@ -52,13 +56,6 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
-		if (result * sign > INT_MAX || result * sign < INT_MIN)
-		{
-			if (sign == 1)
-				return (INT_MAX);
-			else
-				return (INT_MIN);
-		}
 		i++;
 	}
 	return (result * sign);

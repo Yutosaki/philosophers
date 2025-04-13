@@ -66,7 +66,7 @@ int						init_other_mutexes(t_simulation_data *data);
 
 void					parse_args(t_simulation_data *data, int argc,
 							char **argv);
-int						ft_atoi(const char *str);
+long long				ft_atoll(const char *str);
 bool					is_valid_number(const char *str);
 
 int						start_simulation(t_simulation_data *data,
@@ -86,4 +86,4 @@ void					precise_sleep(long long ms);
 void					cleanup(t_simulation_data *data, t_philo *philos);
 int						ft_strcmp(const char *str1, const char *str2);
 
-#endif		// PHILO_H
+#endif // PHILO_H
