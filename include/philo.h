@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:52 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/11 17:44:48 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/13 22:51:25 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void					parse_args(t_simulation_data *data, int argc,
 long long				ft_atoll(const char *str);
 bool					is_valid_number(const char *str);
 
+void					*select_case(t_philo *philo);
 int						start_simulation(t_simulation_data *data,
 							t_philo *philos);
 void					*philosopher_routine(void *arg);
