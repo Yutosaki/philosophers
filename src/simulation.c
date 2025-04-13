@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/10 22:33:42 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/13 22:47:56 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,10 @@ void	*case_one_philo(t_philo *philo)
 	return (NULL);
 }
 
-void	*philosopher_routine(void *arg)
+void	*select_case(t_philo *philo)
 {
-	t_philo	*philo;
-	int		min_wait;
+	int	min_wait;
 
-	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->data->meal_mutex);
-	philo->last_meal_time = philo->data->start_time;
-	pthread_mutex_unlock(&philo->data->meal_mutex);
 	if (philo->data->num_of_philos == 1)
 		return (case_one_philo(philo));
 	if (philo->data->num_of_philos % 2 == 0)
@@ -79,6 +74,18 @@ void	*philosopher_routine(void *arg)
 		else
 			precise_sleep(min_wait * (philo->id - 1) / 2);
 	}
+	return (NULL);
+}
+
+void	*philosopher_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	pthread_mutex_lock(&philo->data->meal_mutex);
+	philo->last_meal_time = philo->data->start_time;
+	pthread_mutex_unlock(&philo->data->meal_mutex);
+	select_case(philo);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->death_mutex);
