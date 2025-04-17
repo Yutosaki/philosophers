@@ -22,12 +22,12 @@ void	check_hunger_status(t_philo *philo, bool *is_most_hungry,
 	i = 0;
 	while (i < philo->data->num_of_philos)
 	{
-		if (philo->data->philos[i].id != philo->id)
+		if (philo->data->philos[i + 1].id != philo->id)
 		{
 			current_time = get_time();
 			pthread_mutex_lock(&philo->data->meal_mutex);
 			other_hunger_time = current_time
-				- philo->data->philos[i].last_meal_time;
+				- philo->data->philos[i + 1].last_meal_time;
 			pthread_mutex_unlock(&philo->data->meal_mutex);
 			if (other_hunger_time > my_hunger_time)
 			{
@@ -58,7 +58,6 @@ void	hunger_time_check(t_philo *philo)
 		my_hunger_time = get_time() - philo->last_meal_time;
 		pthread_mutex_unlock(&philo->data->meal_mutex);
 		check_hunger_status(philo, &is_most_hungry, my_hunger_time);
-		printf("%d is most hungry: %d", philo->id, is_most_hungry);
 		if (is_most_hungry)
 			break ;
 		precise_sleep(philo->data->time_to_eat / philo->data->num_of_philos);
@@ -70,7 +69,6 @@ void	take_forks(t_philo *philo)
 {
 	if (philo->data->num_of_philos == 3)
 	{
-		printf("in take_forks\n");
 		hunger_time_check(philo);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:21:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/13 22:29:51 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/17 15:14:24 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	init_philosophers(t_simulation_data *data, t_philo **philos)
 	*philos = malloc(sizeof(t_philo) * data->num_of_philos);
 	if (!*philos)
 		return (1);
+	data->philos = *philos;
 	i = 0;
 	while (i < data->num_of_philos)
 	{
