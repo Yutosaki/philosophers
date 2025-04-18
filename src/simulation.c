@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/13 22:47:56 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:04:36 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*monitor_routine(void *arg)
 		}
 		if (is_ate_enough(data, philos))
 			return (NULL);
-		usleep(500);
+		usleep(data->time_to_sleep / data->num_of_philos);
 	}
 	return (NULL);
 }
