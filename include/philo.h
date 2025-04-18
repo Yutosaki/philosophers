@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:52 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/13 22:51:25 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:23:37 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ void					*monitor_routine(void *arg);
 bool					is_dead(t_philo *philo);
 bool					is_ate_enough(t_simulation_data *data, t_philo *philos);
 
+void					hunger_time_check(t_philo *philo);
+void					check_hunger_status(t_philo *philo,
+							bool *is_most_hungry, long long my_hunger_time);
 void					take_forks(t_philo *philo);
 void					eat(t_philo *philo);
 void					sleep_and_think(t_philo *philo);
