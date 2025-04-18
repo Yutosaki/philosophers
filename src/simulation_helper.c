@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:19:50 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/18 15:27:03 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:45:26 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ void	eat(t_philo *philo)
 	precise_sleep(philo->data->time_to_eat);
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	philo->meals_count++;
+	if (philo->data->must_eat_count != -1
+		&& philo->meals_count >= philo->data->must_eat_count)
+	{
+		pthread_mutex_lock(&philo->data->death_mutex);
+		philo->has_completed_meals = true;
+		philo->data->completed_philos++;
+		if (philo->data->completed_philos == philo->data->num_of_philos)
+			philo->data->is_ate_enough = true;
+		pthread_mutex_unlock(&philo->data->death_mutex);
+	}
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);

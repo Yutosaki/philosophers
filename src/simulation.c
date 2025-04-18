@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:24:00 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/18 16:10:46 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:56:40 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,12 @@ void	*philosopher_routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->data->death_mutex);
-		take_forks(philo);
-		eat(philo);
-		sleep_and_think(philo);
+		if (!philo->has_completed_meals)
+		{
+			take_forks(philo);
+			eat(philo);
+			sleep_and_think(philo);
+		}
 	}
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: yutsasak <yutsasak@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:07:52 by yutsasak          #+#    #+#             */
-/*   Updated: 2025/04/18 15:23:37 by yutsasak         ###   ########.fr       */
+/*   Updated: 2025/04/18 16:39:38 by yutsasak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_simulation_data
 	int					time_to_eat;
 	int					time_to_sleep;
 	int					must_eat_count;
+	int					completed_philos;
 	bool				is_ate_enough;
 	bool				someone_died;
 	long long			start_time;
@@ -50,6 +51,7 @@ typedef struct s_philo
 	int					id;
 	int					meals_count;
 	long long			last_meal_time;
+	bool				has_completed_meals;
 	pthread_t			thread;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
